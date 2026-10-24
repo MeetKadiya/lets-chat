@@ -9,7 +9,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: '#0B0F17',
+        brand: {
+          purple: '#582BF7',
+          purpleDark: '#471FE0',
+          purpleDeep: '#3712BE',
+          card: '#6F47FC',
+          cardLight: '#7D57FC',
+          yellow: '#FFE814',
+          yellowHover: '#F5DC00',
+          dark: '#161426',
+          darkCard: '#1E1B33',
+          darkBorder: '#2E2A4A',
+          darkHover: '#292544',
+        },
+        background: '#582BF7',
         surface: {
           50: '#1e293b',
           100: '#161e2e',

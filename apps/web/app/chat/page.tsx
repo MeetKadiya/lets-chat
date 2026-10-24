@@ -13,28 +13,28 @@ function ChatRoomInner() {
   const interests = rawInterests ? rawInterests.split(',') : [];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-slate-100">
+    <div className="min-h-screen flex flex-col bg-brand-purple brand-bg-pattern text-white">
       {/* Mini Header */}
-      <header className="h-14 border-b border-slate-800 bg-surface-200/50 backdrop-blur-md px-4 flex items-center justify-between">
+      <header className="h-14 border-b border-white/10 bg-black/20 backdrop-blur-md px-4 sm:px-6 flex items-center justify-between z-20">
         <Link
           href="/"
-          className="flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
+          className="flex items-center gap-2 text-xs font-bold text-white/80 hover:text-white transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Exit to Home</span>
         </Link>
 
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white text-base shadow">
+            🐵
           </div>
-          <span className="font-bold text-sm tracking-tight text-white">
-            Let&apos;s <span className="text-cyan-400">Chat</span>
+          <span className="font-black text-sm tracking-tight text-white">
+            Let&apos;s Chat
           </span>
         </div>
 
-        <div className="text-xs text-slate-500 hidden sm:block">
-          Press <kbd className="px-1.5 py-0.5 rounded bg-surface-100 border border-slate-700 text-slate-300 font-mono text-[10px]">Esc</kbd> for Next Stranger
+        <div className="text-xs text-white/70 hidden sm:block">
+          Press <kbd className="px-2 py-0.5 rounded-full bg-white/15 border border-white/20 text-white font-mono text-[10px]">Esc</kbd> for Next Stranger
         </div>
       </header>
 

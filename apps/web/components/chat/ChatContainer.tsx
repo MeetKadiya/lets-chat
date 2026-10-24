@@ -76,7 +76,7 @@ export function ChatContainer() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-64px)] max-w-7xl mx-auto w-full bg-surface-300 rounded-none sm:rounded-2xl border-0 sm:border border-slate-800 shadow-2xl overflow-hidden">
+    <div className="flex flex-col h-[calc(100vh-64px)] max-w-7xl mx-auto w-full bg-[#161426] rounded-none sm:rounded-3xl border-0 sm:border border-white/10 shadow-2xl overflow-hidden">
       {/* Top Controls Bar */}
       <ChatControls
         sessionState={sessionState}
@@ -90,7 +90,7 @@ export function ChatContainer() {
       <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
         {/* Video Area (if video or both mode) */}
         {(chatMode === 'video' || chatMode === 'both') && (
-          <div className="w-full lg:w-1/2 border-b lg:border-b-0 lg:border-r border-slate-800 bg-black/40 flex flex-col justify-center">
+          <div className="w-full lg:w-1/2 border-b lg:border-b-0 lg:border-r border-white/10 bg-black/60 flex flex-col justify-center">
             <VideoContainer
               localStream={localStream}
               remoteStream={remoteStream}
@@ -104,7 +104,7 @@ export function ChatContainer() {
         )}
 
         {/* Text Area */}
-        <div className="flex flex-col flex-1 bg-surface-200/50">
+        <div className="flex flex-col flex-1 bg-[#1c1930]/80">
           <MessageList messages={messages} sessionState={sessionState} />
           <MessageInput
             onSendMessage={sendMessage}

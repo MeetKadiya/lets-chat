@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ArrowRight, LogOut, Flag, ShieldAlert, Circle } from 'lucide-react';
+import { ArrowRight, LogOut, Flag, ShieldAlert, Circle, Sparkles } from 'lucide-react';
 import { SessionState } from '../../hooks/useChatSession';
 
 interface ChatControlsProps {
@@ -23,7 +23,7 @@ export function ChatControls({
   const isQueued = sessionState === 'QUEUED';
 
   return (
-    <div className="flex items-center justify-between px-4 py-3 bg-surface-200 border-b border-slate-800">
+    <div className="flex items-center justify-between px-4 sm:px-6 py-3 bg-[#161426] border-b border-white/10 text-white">
       {/* State Indicator */}
       <div className="flex items-center gap-2">
         <Circle
@@ -35,34 +35,34 @@ export function ChatControls({
               : 'text-slate-500'
           }`}
         />
-        <span className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+        <span className="text-xs font-bold uppercase tracking-wider text-slate-200">
           {sessionState === 'CHATTING'
             ? 'Stranger Connected'
             : sessionState === 'QUEUED'
-            ? 'Matching...'
+            ? 'Finding Stranger...'
             : sessionState === 'ENDED'
-            ? 'Disconnected'
+            ? 'Chat Ended'
             : 'Idle'}
         </span>
       </div>
 
       {/* Action Buttons */}
-      <div className="flex items-center gap-2">
-        {/* Next Stranger */}
+      <div className="flex items-center gap-2 sm:gap-3">
+        {/* Next Stranger Button (Yellow Monkey Style) */}
         <button
           type="button"
           onClick={onNext}
-          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 active:scale-95 text-white text-xs font-semibold shadow-md shadow-blue-600/20 transition-all"
+          className="brand-yellow-btn flex items-center gap-1.5 px-4 py-1.5 rounded-full font-black text-xs uppercase tracking-wider transition-all"
         >
           <span>Next</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
         </button>
 
         {/* Disconnect */}
         <button
           type="button"
           onClick={onDisconnect}
-          className="p-1.5 rounded-lg bg-surface-100 hover:bg-slate-750 text-slate-300 hover:text-white border border-slate-700/60 transition-colors"
+          className="p-1.5 rounded-full bg-white/10 hover:bg-rose-600 hover:text-white text-slate-300 border border-white/10 transition-colors"
           title="Disconnect and exit"
         >
           <LogOut className="w-4 h-4" />
@@ -74,7 +74,7 @@ export function ChatControls({
             <button
               type="button"
               onClick={onReport}
-              className="p-1.5 rounded-lg bg-surface-100 hover:bg-amber-950/40 text-amber-400 hover:text-amber-300 border border-amber-900/40 transition-colors"
+              className="p-1.5 rounded-full bg-white/10 hover:bg-amber-500/20 text-amber-400 border border-white/10 transition-colors"
               title="Report stranger"
             >
               <Flag className="w-4 h-4" />
@@ -82,7 +82,7 @@ export function ChatControls({
             <button
               type="button"
               onClick={onBlock}
-              className="p-1.5 rounded-lg bg-surface-100 hover:bg-rose-950/40 text-rose-400 hover:text-rose-300 border border-rose-900/40 transition-colors"
+              className="p-1.5 rounded-full bg-white/10 hover:bg-rose-500/20 text-rose-400 border border-white/10 transition-colors"
               title="Block stranger"
             >
               <ShieldAlert className="w-4 h-4" />
