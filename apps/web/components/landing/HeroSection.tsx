@@ -4,6 +4,10 @@ import React, { useState } from 'react';
 import { ChatMode } from '@strangerconnect/shared';
 import { WebcamPreview } from './WebcamPreview';
 import { MatchCard } from './MatchCard';
+import { SquadLeftPanel } from './SquadLeftPanel';
+import { SquadCard } from './SquadCard';
+import { EnterSquadCodeModal } from '../modals/EnterSquadCodeModal';
+import { SquadHelpModal } from '../modals/SquadHelpModal';
 
 interface HeroSectionProps {
   selectedMode: ChatMode;
@@ -22,33 +26,68 @@ export function HeroSection({
   selectedInterests = [],
   onOpenInterests = () => {},
 }: HeroSectionProps) {
+  const [mainTab, setMainTab] = useState<'solo' | 'squad'>('solo');
   const [isMuted, setIsMuted] = useState(false);
   const [isVideoOff, setIsVideoOff] = useState(false);
+  const [squadMemberName, setSquadMemberName] = useState<string | null>(null);
+
+  // Squad Modals
+  const [isEnterSquadCodeOpen, setIsEnterSquadCodeOpen] = useState(false);
+  const [isSquadHelpOpen, setIsSquadHelpOpen] = useState(false);
+
+  const handleJoinSquad = (code: string) => {
+    // Pair up with friend in squad
+    setSquadMemberName('Alex');
+  };
 
   return (
     <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-2 sm:py-6">
-      {/* Central Interactive Arena — 2 Columns (Webcam on Left, Match on Right) */}
+      {/* Central Interactive Arena — 2 Columns */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 items-center justify-center max-w-4xl mx-auto">
-        {/* Left Column: Live Selfie Camera Preview */}
+        {/* Left Column: Live Camera (Solo) OR Squad Visualizer + Cam (Squad) */}
         <div className="w-full flex justify-center">
-          <WebcamPreview
-            isMuted={isMuted}
-            isVideoOff={isVideoOff}
-            onToggleMic={() => setIsMuted(!isMuted)}
-            onToggleVideo={() => setIsVideoOff(!isVideoOff)}
-          />
+          {mainTab === 'solo' ? (
+            <WebcamPreview
+              isMuted={isMuted}
+              isVideoOff={isVideoOff}
+              onToggleMic={() => setIsMuted(!isMuted)}
+              onToggleVideo={() => setIsVideoOff(!isVideoOff)}
+            />
+          ) : (
+            <SquadLeftPanel
+              isMuted={isMuted}
+              isVideoOff={isVideoOff}
+              onToggleMic={() => setIsMuted(!isMuted)}
+              onToggleVideo={() => setIsVideoOff(!isVideoOff)}
+              squadMemberName={squadMemberName}
+              onInviteClick={() => setIsEnterSquadCodeOpen(true)}
+            />
+          )}
         </div>
 
-        {/* Right Column: Matchmaker Social Card */}
+        {/* Right Column: Matchmaker Card (Solo) OR My Squad Card (Squad) */}
         <div className="w-full flex justify-center">
-          <MatchCard
-            selectedMode={selectedMode}
-            onSelectMode={onSelectMode}
-            onStart={onStart}
-            isConnecting={isConnecting}
-            selectedInterests={selectedInterests}
-            onOpenInterests={onOpenInterests}
-          />
+          {mainTab === 'solo' ? (
+            <MatchCard
+              selectedMode={selectedMode}
+              onSelectMode={onSelectMode}
+              onStart={onStart}
+              isConnecting={isConnecting}
+              selectedInterests={selectedInterests}
+              onOpenInterests={onOpenInterests}
+              onSelectTab={setMainTab}
+              mainTab={mainTab}
+            />
+          ) : (
+            <SquadCard
+              onSelectTab={setMainTab}
+              onOpenSquadHelp={() => setIsSquadHelpOpen(true)}
+              onOpenEnterCode={() => setIsEnterSquadCodeOpen(true)}
+              squadMemberName={squadMemberName}
+              onStartSquadChat={onStart}
+              isConnecting={isConnecting}
+            />
+          )}
         </div>
       </div>
 
@@ -84,6 +123,18 @@ export function HeroSection({
           Start Chatting Now
         </button>
       </div>
+
+      {/* Squad Modals */}
+      <EnterSquadCodeModal
+        isOpen={isEnterSquadCodeOpen}
+        onClose={() => setIsEnterSquadCodeOpen(false)}
+        onJoin={handleJoinSquad}
+      />
+
+      <SquadHelpModal
+        isOpen={isSquadHelpOpen}
+        onClose={() => setIsSquadHelpOpen(false)}
+      />
     </div>
   );
 }

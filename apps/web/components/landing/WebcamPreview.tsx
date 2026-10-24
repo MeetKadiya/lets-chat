@@ -8,6 +8,7 @@ interface WebcamPreviewProps {
   isVideoOff: boolean;
   onToggleMic: () => void;
   onToggleVideo: () => void;
+  compact?: boolean;
 }
 
 export function WebcamPreview({
@@ -15,6 +16,7 @@ export function WebcamPreview({
   isVideoOff,
   onToggleMic,
   onToggleVideo,
+  compact = false,
 }: WebcamPreviewProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
@@ -81,7 +83,11 @@ export function WebcamPreview({
   }, [stream, isMuted, isVideoOff]);
 
   return (
-    <div className="relative w-full h-[380px] sm:h-[460px] md:h-[520px] rounded-3xl bg-[#141220] border-2 border-white/10 shadow-2xl overflow-hidden flex flex-col items-center justify-center">
+    <div className={`relative w-full border-2 border-white/10 shadow-2xl overflow-hidden flex flex-col items-center justify-center transition-all ${
+      compact
+        ? 'h-[200px] sm:h-[240px] md:h-[250px] rounded-2xl bg-[#141220]'
+        : 'h-[380px] sm:h-[460px] md:h-[520px] rounded-3xl bg-[#141220]'
+    }`}>
       {/* Video Feed */}
       {!isVideoOff && hasPermission ? (
         <video

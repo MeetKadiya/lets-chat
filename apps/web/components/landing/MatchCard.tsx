@@ -11,6 +11,8 @@ interface MatchCardProps {
   isConnecting: boolean;
   selectedInterests: string[];
   onOpenInterests: () => void;
+  onSelectTab?: (tab: 'solo' | 'squad') => void;
+  mainTab?: 'solo' | 'squad';
 }
 
 export function MatchCard({
@@ -20,19 +22,24 @@ export function MatchCard({
   isConnecting,
   selectedInterests,
   onOpenInterests,
+  onSelectTab,
+  mainTab = 'solo',
 }: MatchCardProps) {
   const [filterGender, setFilterGender] = useState<'both' | 'male' | 'female'>('both');
   const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
 
   return (
     <div className="relative w-full h-[380px] sm:h-[460px] md:h-[520px] rounded-3xl bg-[#6f47fc] border-2 border-white/10 shadow-2xl p-6 sm:p-8 flex flex-col items-center justify-between text-white">
-      {/* Top Mode Toggle: [ SOLO ] [ SQUAD / TEXT ] */}
+      {/* Top Mode Toggle: [ SOLO ] [ SQUAD ] */}
       <div className="flex items-center p-1 rounded-full bg-black/20 backdrop-blur-md border border-white/10 text-xs font-bold">
         <button
           type="button"
-          onClick={() => onSelectMode('video')}
+          onClick={() => {
+            onSelectTab?.('solo');
+            onSelectMode('video');
+          }}
           className={`px-4 sm:px-5 py-1.5 rounded-full transition-all ${
-            selectedMode === 'video' || selectedMode === 'both'
+            mainTab === 'solo'
               ? 'bg-brand-yellow text-slate-900 font-extrabold shadow'
               : 'text-white/80 hover:text-white'
           }`}
@@ -42,14 +49,14 @@ export function MatchCard({
 
         <button
           type="button"
-          onClick={() => onSelectMode('text')}
+          onClick={() => onSelectTab?.('squad')}
           className={`px-4 sm:px-5 py-1.5 rounded-full transition-all ${
-            selectedMode === 'text'
+            mainTab === 'squad'
               ? 'bg-brand-yellow text-slate-900 font-extrabold shadow'
               : 'text-white/80 hover:text-white'
           }`}
         >
-          TEXT CHAT
+          SQUAD
         </button>
       </div>
 
