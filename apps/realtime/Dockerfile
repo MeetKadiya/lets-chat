@@ -22,11 +22,13 @@ ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 appuser
 
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/packages/shared/package.json ./packages/shared/package.json
+COPY --from=builder /app/packages/shared/dist ./packages/shared/dist
+COPY --from=builder /app/apps/realtime/package.json ./apps/realtime/package.json
 COPY --from=builder --chown=appuser:nodejs /app/apps/realtime/dist ./apps/realtime/dist
 COPY --from=builder --chown=appuser:nodejs /app/apps/realtime/src/scripts ./apps/realtime/src/scripts
-COPY --from=builder /app/packages/shared/dist ./packages/shared/dist
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/apps/realtime/package.json ./apps/realtime/package.json
 
 USER appuser
 EXPOSE 4000

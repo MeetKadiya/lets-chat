@@ -74,10 +74,11 @@ io.on('connection', (socket) => {
 
 export async function startServer(port = env.PORT) {
   try {
-    await redis.connect().catch((err) => {
-      console.warn('Initial Redis connection deferred or failed:', err.message);
+    await redis.connect().catch((err: unknown) => {
+      const message = err instanceof Error ? err.message : String(err);
+      console.warn('Initial Redis connection deferred or failed:', message);
     });
-  } catch (err) {
+  } catch (err: unknown) {
     console.warn('Redis connect error:', err);
   }
 
