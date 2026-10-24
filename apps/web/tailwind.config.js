@@ -9,18 +9,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          purple: '#582BF7',
-          purpleDark: '#471FE0',
-          purpleDeep: '#3712BE',
-          card: '#6F47FC',
-          cardLight: '#7D57FC',
-          yellow: '#FFE814',
-          yellowHover: '#F5DC00',
-          dark: '#161426',
-          darkCard: '#1E1B33',
-          darkBorder: '#2E2A4A',
-          darkHover: '#292544',
+        letschat: {
+          cream: '#FFF9E9',
+          mint: '#E8F2DF',
+          green: '#65C93F',
+          greenHover: '#5BB937',
+          greenDark: '#278344',
+          sky: '#8BC9F6',
+          ink: '#111111',
+          red: '#F35E55',
+          dirt: '#87552E',
+          dirtDark: '#683F1F',
+          yellow: '#F4D03F',
         },
         mingleo: {
           cream: '#FFF9ED',
@@ -34,24 +34,23 @@ module.exports = {
           sand: '#F4EBD9',
           border: '#252820',
         },
-        background: '#FFF9ED',
+        background: '#E8F2DF',
         surface: {
           50: '#1e293b',
           100: '#161e2e',
           200: '#111726',
           300: '#0B0F17',
         },
-        primary: {
-          DEFAULT: '#3B82F6',
-          hover: '#2563EB',
-          active: '#1D4ED8',
-        },
-        accent: {
-          cyan: '#06B6D4',
-          emerald: '#10B981',
-          rose: '#F43F5E',
-          amber: '#F59E0B',
-        },
+      },
+      fontFamily: {
+        pixel: ['"Press Start 2P"', 'monospace'],
+        nunito: ['Nunito', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+      },
+      boxShadow: {
+        'pixel-sm': '0 2px 0 #111111',
+        'pixel-md': '0 4px 0 #111111',
+        'pixel-lg': '0 5px 0 #111111',
+        'pixel-xl': '0 8px 0 #111111',
       },
     },
   },

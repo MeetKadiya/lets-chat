@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" shape-rendering="crispEdges">
+  <!-- Hair Base (Orange) -->
+  <rect x="32" y="24" width="96" height="88" fill="#E67E22" stroke="#111111" stroke-width="3" />
+  <rect x="24" y="44" width="16" height="76" fill="#E67E22" stroke="#111111" stroke-width="3" />
+  <rect x="120" y="44" width="16" height="76" fill="#E67E22" stroke="#111111" stroke-width="3" />
+  
+  <!-- Face (Skin Tone) -->
+  <rect x="44" y="44" width="72" height="52" fill="#F0C29E" stroke="#111111" stroke-width="3" />
+  <!-- Hair Bangs (Orange blocks) -->
+  <rect x="40" y="32" width="28" height="18" fill="#E67E22" />
+  <rect x="92" y="32" width="28" height="18" fill="#E67E22" />
+  <rect x="64" y="32" width="32" height="12" fill="#D35400" />
+  
+  <!-- Eyes -->
+  <rect x="52" y="56" width="10" height="14" fill="#111111" />
+  <rect x="98" y="56" width="10" height="14" fill="#111111" />
+  
+  <!-- Mouth (Happy Smile) -->
+  <rect x="72" y="76" width="16" height="10" fill="#111111" />
+  <rect x="74" y="80" width="12" height="6" fill="#E74C3C" />
+  
+  <!-- Yellow Shirt / Body -->
+  <path d="M28 160 L36 112 L56 104 L104 104 L124 112 L132 160 Z" fill="#F1C40F" stroke="#111111" stroke-width="3" />
+  <!-- White Collar Line -->
+  <polygon points="64,104 96,104 88,116 72,116" fill="#FFFFFF" stroke="#111111" stroke-width="2" />
+  <rect x="78" y="116" width="4" height="44" fill="#D4AC0D" />
+</svg>

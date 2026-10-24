@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" shape-rendering="crispEdges">
+  <!-- Hair Base (Brown) -->
+  <rect x="36" y="20" width="88" height="60" fill="#4A2E18" stroke="#111111" stroke-width="3" />
+  <rect x="28" y="32" width="12" height="40" fill="#4A2E18" stroke="#111111" stroke-width="3" />
+  <rect x="120" y="32" width="12" height="40" fill="#4A2E18" stroke="#111111" stroke-width="3" />
+  
+  <!-- Face (Skin Tone) -->
+  <rect x="40" y="44" width="80" height="52" fill="#E8B588" stroke="#111111" stroke-width="3" />
+  <!-- Hair bangs -->
+  <rect x="40" y="36" width="20" height="16" fill="#4A2E18" />
+  <rect x="68" y="36" width="28" height="12" fill="#4A2E18" />
+  <rect x="104" y="36" width="16" height="16" fill="#4A2E18" />
+  
+  <!-- Eyes -->
+  <rect x="52" y="56" width="12" height="14" fill="#111111" />
+  <rect x="96" y="56" width="12" height="14" fill="#111111" />
+  
+  <!-- Smile -->
+  <rect x="70" y="76" width="20" height="10" fill="#111111" />
+  <rect x="72" y="80" width="16" height="6" fill="#D35400" />
+  
+  <!-- Blue Hoodie -->
+  <path d="M24 160 L32 108 L52 100 L108 100 L128 108 L136 160 Z" fill="#2980B9" stroke="#111111" stroke-width="3" />
+  <rect x="68" y="100" width="24" height="28" fill="#1F618D" stroke="#111111" stroke-width="2" />
+  <rect x="78" y="104" width="4" height="24" fill="#111111" />
+  <rect x="36" y="120" width="24" height="40" fill="#2471A3" />
+  <rect x="100" y="120" width="24" height="40" fill="#2471A3" />
+</svg>

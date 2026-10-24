@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" shape-rendering="crispEdges">
+  <!-- Flower Stem and Bloom on top of block -->
+  <rect x="38" y="6" width="4" height="14" fill="#4B8B2E" stroke="#111111" stroke-width="1" />
+  <rect x="34" y="2" width="12" height="8" fill="#F4D03F" stroke="#111111" stroke-width="1.5" />
+  <rect x="38" y="4" width="4" height="4" fill="#E67E22" />
+  
+  <!-- 3D Isometric Grass/Dirt Block -->
+  <!-- Top Face (Green Grass) -->
+  <polygon points="40,20 74,36 40,52 6,36" fill="#65C93F" stroke="#111111" stroke-width="2.5" />
+  <polygon points="40,24 68,36 40,48 12,36" fill="#78BF53" />
+  
+  <!-- Left Face (Dirt) -->
+  <polygon points="6,36 40,52 40,76 6,60" fill="#87552E" stroke="#111111" stroke-width="2.5" stroke-linejoin="round" />
+  <!-- Left Grass overhang -->
+  <polygon points="6,36 40,52 40,57 6,41" fill="#4E9A34" stroke="#111111" stroke-width="1" />
+  <rect x="14" y="46" width="6" height="4" fill="#4E9A34" />
+  <rect x="28" y="52" width="6" height="5" fill="#4E9A34" />
+  <rect x="18" y="58" width="5" height="5" fill="#5C381E" />
+  
+  <!-- Right Face (Darker Dirt) -->
+  <polygon points="40,52 74,36 74,60 40,76" fill="#683F1F" stroke="#111111" stroke-width="2.5" stroke-linejoin="round" />
+  <!-- Right Grass overhang -->
+  <polygon points="40,52 74,36 74,41 40,57" fill="#3D7E28" stroke="#111111" stroke-width="1" />
+  <rect x="46" y="53" width="6" height="5" fill="#3D7E28" />
+  <rect x="60" y="46" width="6" height="4" fill="#3D7E28" />
+  <rect x="54" y="62" width="5" height="5" fill="#492B15" />
+</svg>
