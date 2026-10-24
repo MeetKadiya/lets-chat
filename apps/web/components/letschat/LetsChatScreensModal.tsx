@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import { X, Users, Video } from 'lucide-react';
 import { Screen1Home } from './screens/Screen1Home';
 import { Screen2LiveChat } from './screens/Screen2LiveChat';
 import { Screen3Profile } from './screens/Screen3Profile';
@@ -10,6 +10,7 @@ import { Screen5Interests } from './screens/Screen5Interests';
 import { Screen6Friends } from './screens/Screen6Friends';
 import { Screen7Safety } from './screens/Screen7Safety';
 import { Screen8Settings } from './screens/Screen8Settings';
+import { LetsChatSquadView } from './screens/LetsChatSquadView';
 import { LetsChatFeatureShell, FeatureTabId } from './screens/LetsChatFeatureShell';
 
 interface LetsChatScreensModalProps {
@@ -66,19 +67,20 @@ export function LetsChatScreensModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150">
       <div className="w-full max-w-5xl max-h-[95vh] flex flex-col animate-in zoom-in-95 duration-200">
-        {/* Top 8-Screen Quick Navigation Pill Bar */}
+        {/* Top Feature Navigation Bar */}
         <div className="bg-[#FFF9E9] border-2 border-[#111111] shadow-[0_4px_0_#111111] rounded-2xl px-3 py-2 mb-3 flex items-center justify-between gap-2 overflow-x-auto">
           <div className="flex items-center gap-1.5 shrink-0">
-            <span className="font-black text-xs text-[#111111] mr-1 hidden sm:inline">Reference Screens:</span>
+            <span className="font-black text-xs text-[#111111] mr-1 hidden sm:inline">Features:</span>
             {[
-              { num: 1, label: '1. Home' },
-              { num: 2, label: '2. Live Chat' },
-              { num: 3, label: '3. Profile' },
-              { num: 4, label: '4. Pricing' },
-              { num: 5, label: '5. Interests' },
-              { num: 6, label: '6. Friends' },
-              { num: 7, label: '7. Safety' },
-              { num: 8, label: '8. Settings' },
+              { num: 1, label: 'Home' },
+              { num: 2, label: 'Live Chat' },
+              { num: 9, label: 'Squad Rooms' },
+              { num: 3, label: 'Profile' },
+              { num: 4, label: 'Plus Pricing' },
+              { num: 5, label: 'Interests' },
+              { num: 6, label: 'Friends' },
+              { num: 7, label: 'Safety' },
+              { num: 8, label: 'Settings' },
             ].map((s) => (
               <button
                 key={s.num}
@@ -98,29 +100,29 @@ export function LetsChatScreensModal({
           <button
             type="button"
             onClick={onClose}
-            className="w-7 h-7 rounded-lg bg-white border border-[#111111] shadow-[0_1px_0_#111111] flex items-center justify-center text-[#111111] hover:bg-slate-100 shrink-0 cursor-pointer"
+            className="w-8 h-8 rounded-xl bg-white border-2 border-[#111111] shadow-[0_2px_0_#111111] flex items-center justify-center text-[#111111] hover:bg-slate-50 transition-all cursor-pointer shrink-0"
             title="Close"
           >
-            <X className="w-4 h-4" />
+            <X className="w-4 h-4 stroke-[3]" />
           </button>
         </div>
 
-        {/* Screen View */}
-        <div className="overflow-y-auto rounded-[22px]">
+        {/* Screen Content Render */}
+        <div className="overflow-y-auto flex-1 rounded-[22px]">
           {currentScreen === 1 && (
-            <Screen1Home
-              onStartChatting={() => {
-                onClose();
-                onStartChatting();
-              }}
-            />
+            <Screen1Home onStartChatting={onStartChatting} />
           )}
 
           {currentScreen === 2 && (
             <Screen2LiveChat
-              onNext={onStartChatting}
+              onNext={() => {}}
               onEnd={onClose}
+              onReport={() => {}}
             />
+          )}
+
+          {currentScreen === 9 && (
+            <LetsChatSquadView onStartSquad={() => onStartChatting()} />
           )}
 
           {currentScreen >= 3 && currentScreen <= 8 && (
@@ -129,18 +131,17 @@ export function LetsChatScreensModal({
               onTabChange={handleTabChange}
               onClose={onClose}
             >
-              {currentScreen === 3 && <Screen3Profile onSaved={onClose} />}
+              {currentScreen === 3 && <Screen3Profile />}
               {currentScreen === 4 && <Screen4Pricing onClose={onClose} />}
               {currentScreen === 5 && (
                 <Screen5Interests
                   selectedInterests={selectedInterests}
                   onChange={onInterestsChange}
-                  onSaved={onClose}
                 />
               )}
               {currentScreen === 6 && <Screen6Friends />}
               {currentScreen === 7 && <Screen7Safety />}
-              {currentScreen === 8 && <Screen8Settings onSaved={onClose} />}
+              {currentScreen === 8 && <Screen8Settings />}
             </LetsChatFeatureShell>
           )}
         </div>
