@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { Video, MessageSquare, Sparkles, Hash, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import { Sparkles, MessageSquare, Video, ChevronDown, Check, Hash } from 'lucide-react';
 import { ChatMode } from '@strangerconnect/shared';
 
 interface MatchCardProps {
@@ -11,6 +11,8 @@ interface MatchCardProps {
   isConnecting: boolean;
   selectedInterests: string[];
   onOpenInterests: () => void;
+  onSelectTab?: (tab: 'solo' | 'squad') => void;
+  mainTab?: 'solo' | 'squad';
 }
 
 export function MatchCard({
@@ -20,131 +22,148 @@ export function MatchCard({
   isConnecting,
   selectedInterests,
   onOpenInterests,
+  onSelectTab,
+  mainTab = 'solo',
 }: MatchCardProps) {
+  const [filterGender, setFilterGender] = useState<'both' | 'male' | 'female'>('both');
+  const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
+
   return (
-    <div className="relative w-full h-[360px] sm:h-[440px] md:h-[480px] rounded-3xl glass-panel border border-white/10 shadow-2xl p-6 sm:p-8 flex flex-col justify-between text-white overflow-hidden">
-      {/* Background Subtle Gradient Glow */}
-      <div className="absolute -top-16 -right-16 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+    <div className="relative w-full h-[380px] sm:h-[460px] md:h-[520px] rounded-3xl bg-[#6f47fc] border-2 border-white/10 shadow-2xl p-6 sm:p-8 flex flex-col items-center justify-between text-white">
+      {/* Top Mode Toggle: [ SOLO ] [ SQUAD ] */}
+      <div className="flex items-center p-1 rounded-full bg-black/20 backdrop-blur-md border border-white/10 text-xs font-bold">
+        <button
+          type="button"
+          onClick={() => {
+            onSelectTab?.('solo');
+            onSelectMode('video');
+          }}
+          className={`px-4 sm:px-5 py-1.5 rounded-full transition-all ${
+            mainTab === 'solo'
+              ? 'bg-brand-yellow text-slate-900 font-extrabold shadow'
+              : 'text-white/80 hover:text-white'
+          }`}
+        >
+          SOLO
+        </button>
 
-      {/* Top Mode Selector Tabs */}
-      <div className="relative z-10 flex items-center justify-center">
-        <div className="grid grid-cols-2 p-1 rounded-2xl bg-white/[0.04] border border-white/10 w-full max-w-xs text-xs font-bold shadow-inner">
-          <button
-            type="button"
-            onClick={() => onSelectMode('video')}
-            className={`py-2 px-3 rounded-xl flex items-center justify-center gap-2 transition-all ${
-              selectedMode === 'video' || selectedMode === 'both'
-                ? 'bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-extrabold shadow-md shadow-cyan-500/20'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            <Video className="w-4 h-4" />
-            <span>Video Chat</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => onSelectMode('text')}
-            className={`py-2 px-3 rounded-xl flex items-center justify-center gap-2 transition-all ${
-              selectedMode === 'text'
-                ? 'bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-extrabold shadow-md shadow-cyan-500/20'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            <MessageSquare className="w-4 h-4" />
-            <span>Text Chat</span>
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => onSelectTab?.('squad')}
+          className={`px-4 sm:px-5 py-1.5 rounded-full transition-all ${
+            mainTab === 'squad'
+              ? 'bg-brand-yellow text-slate-900 font-extrabold shadow'
+              : 'text-white/80 hover:text-white'
+          }`}
+        >
+          SQUAD
+        </button>
       </div>
 
-      {/* Center Console Content */}
-      <div className="relative z-10 flex flex-col items-center text-center space-y-3 sm:space-y-4 my-auto">
-        {/* Brand Orb Emblem */}
-        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-gradient-to-tr from-cyan-500/20 via-indigo-500/20 to-purple-500/10 border border-white/15 shadow-xl flex items-center justify-center">
-          <svg
-            className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-400 drop-shadow"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-            <circle cx="12" cy="11" r="3" fill="currentColor" fillOpacity="0.3" />
-          </svg>
+      {/* Center Mascot & Identity */}
+      <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4 my-auto">
+        {/* Mascot App Icon */}
+        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 border-2 border-white/20 shadow-2xl flex items-center justify-center text-4xl sm:text-5xl transform hover:scale-105 transition-transform select-none">
+          🐵
         </div>
 
-        {/* Title and Purpose */}
+        {/* Title & Slogan */}
         <div className="space-y-1">
-          <h2 className="text-xl sm:text-2xl font-black tracking-tight text-white">
-            Instant Anonymous Match
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-400 max-w-xs mx-auto leading-relaxed">
-            {selectedInterests.length > 0
-              ? `Prioritizing strangers matching your ${selectedInterests.length} selected interests.`
-              : 'Pair with friendly strangers across the globe in seconds.'}
+          <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white drop-shadow-sm">
+            Let&apos;s Chat
+          </h1>
+          <p className="text-xs sm:text-sm text-white/80 font-medium">
+            Make new friends face-to-face
           </p>
         </div>
 
-        {/* Interests Quick Bar */}
-        {selectedInterests.length > 0 ? (
+        {/* Selected Interests Pill (if any) */}
+        {selectedInterests.length > 0 && (
           <button
             type="button"
             onClick={onOpenInterests}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 text-xs font-semibold transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 hover:bg-white/30 text-white text-xs font-semibold backdrop-blur-sm transition-colors"
           >
-            <Hash className="w-3 h-3 text-cyan-400" />
-            <span>
-              {selectedInterests.slice(0, 3).map((t) => `#${t}`).join(' ')}
-              {selectedInterests.length > 3 ? ` +${selectedInterests.length - 3} more` : ''}
-            </span>
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={onOpenInterests}
-            className="text-xs text-slate-400 hover:text-cyan-300 transition-colors flex items-center gap-1 underline underline-offset-4"
-          >
-            <Hash className="w-3 h-3" />
-            <span>Filter by topic / shared interests</span>
+            <Hash className="w-3 h-3 text-brand-yellow" />
+            <span>{selectedInterests.slice(0, 2).join(', ')}{selectedInterests.length > 2 ? ` +${selectedInterests.length - 2}` : ''}</span>
           </button>
         )}
       </div>
 
-      {/* Bottom CTA Button & Trust Footnote */}
-      <div className="relative z-10 w-full flex flex-col items-center space-y-2.5">
+      {/* Bottom Controls: Filter Pill & Yellow CTA Button */}
+      <div className="w-full max-w-[280px] sm:max-w-[320px] flex flex-col items-center space-y-3">
+        {/* Filter Pill */}
+        <div className="relative w-full">
+          <button
+            type="button"
+            onClick={() => setIsFilterDropdownOpen(!isFilterDropdownOpen)}
+            className="w-full py-2.5 px-4 rounded-full bg-white text-slate-800 font-bold text-xs sm:text-sm shadow-md hover:bg-slate-50 flex items-center justify-center gap-2 transition-all"
+          >
+            <span className="text-sm">
+              {filterGender === 'both' ? '👫 Both' : filterGender === 'male' ? '🙋‍♂️ Male' : '🙋‍♀️ Female'}
+            </span>
+            <ChevronDown className="w-4 h-4 text-slate-400" />
+          </button>
+
+          {/* Gender Filter Dropdown */}
+          {isFilterDropdownOpen && (
+            <div className="absolute bottom-12 left-0 right-0 p-1.5 bg-white rounded-2xl shadow-2xl border border-slate-200 text-slate-800 text-xs font-bold z-20 animate-in zoom-in-95 duration-150">
+              <button
+                type="button"
+                onClick={() => {
+                  setFilterGender('both');
+                  setIsFilterDropdownOpen(false);
+                }}
+                className={`w-full py-2 px-3 rounded-xl flex items-center justify-between hover:bg-slate-100 ${
+                  filterGender === 'both' ? 'text-brand-purple bg-purple-50' : ''
+                }`}
+              >
+                <span>👫 Both (All)</span>
+                {filterGender === 'both' && <Check className="w-4 h-4" />}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setFilterGender('male');
+                  setIsFilterDropdownOpen(false);
+                }}
+                className={`w-full py-2 px-3 rounded-xl flex items-center justify-between hover:bg-slate-100 ${
+                  filterGender === 'male' ? 'text-brand-purple bg-purple-50' : ''
+                }`}
+              >
+                <span>🙋‍♂️ Male Only</span>
+                {filterGender === 'male' && <Check className="w-4 h-4" />}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setFilterGender('female');
+                  setIsFilterDropdownOpen(false);
+                }}
+                className={`w-full py-2 px-3 rounded-xl flex items-center justify-between hover:bg-slate-100 ${
+                  filterGender === 'female' ? 'text-brand-purple bg-purple-50' : ''
+                }`}
+              >
+                <span>🙋‍♀️ Female Only</span>
+                {filterGender === 'female' && <Check className="w-4 h-4" />}
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Primary Start Button */}
         <button
           type="button"
           onClick={onStart}
           disabled={isConnecting}
-          className="w-full py-3.5 sm:py-4 rounded-2xl btn-electric text-white font-extrabold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2 group transition-all"
+          className="w-full py-3.5 sm:py-4 rounded-full brand-yellow-btn font-black text-sm sm:text-base tracking-wide text-black uppercase shadow-[0_5px_0_#ccb700] hover:shadow-[0_6px_0_#ccb700] active:shadow-[0_2px_0_#ccb700] transition-all flex items-center justify-center gap-2"
         >
           {isConnecting ? (
-            <div className="flex items-center gap-2">
-              <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-              <span>Connecting to Matchmaker...</span>
-            </div>
+            <span>Connecting...</span>
           ) : (
-            <div className="flex items-center gap-2">
-              <span>{selectedMode === 'text' ? 'Start Text Chat' : 'Start Video Chat'}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </div>
+            <span>{selectedMode === 'text' ? 'Start Text Chat' : 'Start Video Chat'}</span>
           )}
         </button>
-
-        {/* Privacy & Safety Footnote */}
-        <div className="flex items-center gap-4 text-[11px] text-slate-500 font-medium">
-          <span className="flex items-center gap-1">
-            <ShieldCheck className="w-3 h-3 text-emerald-400" />
-            <span>Strict 18+</span>
-          </span>
-          <span>&bull;</span>
-          <span>Peer-to-Peer</span>
-          <span>&bull;</span>
-          <span>No Transcripts Stored</span>
-        </div>
       </div>
     </div>
   );

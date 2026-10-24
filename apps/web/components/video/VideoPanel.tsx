@@ -29,7 +29,7 @@ export function VideoPanel({
   const hasActiveStream = !!stream && !isVideoOff;
 
   return (
-    <div className="relative w-full h-full min-h-[220px] sm:min-h-[280px] bg-[#0A0E1A] rounded-2xl overflow-hidden border border-white/10 shadow-xl flex items-center justify-center">
+    <div className="relative w-full h-full min-h-[220px] sm:min-h-[280px] bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 flex items-center justify-center">
       {/* Video Element */}
       <video
         ref={videoRef}
