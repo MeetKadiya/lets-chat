@@ -1,6 +1,6 @@
-# StrangerConnect — Deployment & Production Guide
+# Let's Chat — Deployment & Production Guide
 
-This guide describes how to run StrangerConnect in development and deploy to production infrastructure.
+This guide describes how to run Let's Chat in development and deploy to production infrastructure.
 
 ---
 

@@ -1,6 +1,6 @@
-# StrangerConnect — Architecture Decision Records (ADRs)
+# Let's Chat — Architecture Decision Records (ADRs)
 
-**Project:** StrangerConnect (Anonymous Random Text & Video Chat)  
+**Project:** Let's Chat (formerly StrangerConnect — Anonymous Random Text & Video Chat)  
 **Status:** Approved for Implementation Planning  
 **Last Updated:** 2026-10-25
 
@@ -9,14 +9,14 @@
 ## ADR-01: Monorepo Structure and Dependency Management
 
 ### Context
-StrangerConnect requires a frontend web client (Next.js), a persistent real-time signaling & queue server (Node.js + Socket.IO), and shared contract definitions (types, event schemas, validation rules). We need a unified repository structure that supports fast local development, code sharing, and clean Dockerized deployments.
+Let's Chat requires a frontend web client (Next.js), a persistent real-time signaling & queue server (Node.js + Socket.IO), and shared contract definitions (types, event schemas, validation rules). We need a unified repository structure that supports fast local development, code sharing, and clean Dockerized deployments.
 
 ### Decision
 Use **npm workspaces** within a root repository. 
 Node.js v24.16.0 and npm 10.8.3 are natively installed on the host environment.
 The repository layout follows:
 ```text
-strangerconnect/
+letschat/
 ├── apps/
 │   ├── web/               # Next.js 14+ (App Router), React, Tailwind CSS
 │   └── realtime/          # Node.js, TypeScript, native HTTP + Socket.IO server

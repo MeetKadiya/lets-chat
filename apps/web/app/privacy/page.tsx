@@ -10,7 +10,7 @@ export default function PrivacyPage() {
           className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Back to StrangerConnect</span>
+          <span>Back to Let&apos;s Chat</span>
         </Link>
 
         <div>
@@ -18,7 +18,7 @@ export default function PrivacyPage() {
             Privacy Policy & Data Retention
           </h1>
           <p className="text-sm text-slate-400">
-            Last updated: October 2026. StrangerConnect is engineered from the ground up for strict ephemeral privacy.
+            Last updated: October 2026. Let&apos;s Chat is engineered from the ground up for strict ephemeral privacy.
           </p>
         </div>
 
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
               <h2>1. No Registration & No Personal Identifiers</h2>
             </div>
             <p>
-              StrangerConnect never asks for your real name, email address, phone number, social media handles, or profile photos. All users are assigned a temporary cryptographic session token. The server stores only a one-way cryptographic SHA-256 hash of this token.
+              Let&apos;s Chat never asks for your real name, email address, phone number, social media handles, or profile photos. All users are assigned a temporary cryptographic session token. The server stores only a one-way cryptographic SHA-256 hash of this token.
             </p>
           </section>
 

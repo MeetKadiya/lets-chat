@@ -29,7 +29,7 @@ function ChatRoomInner() {
             <Sparkles className="w-3.5 h-3.5" />
           </div>
           <span className="font-bold text-sm tracking-tight text-white">
-            Stranger<span className="text-cyan-400">Connect</span>
+            Let&apos;s <span className="text-cyan-400">Chat</span>
           </span>
         </div>
 

@@ -10,7 +10,7 @@ export default function SafetyPage() {
           className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Back to StrangerConnect</span>
+          <span>Back to Let&apos;s Chat</span>
         </Link>
 
         <div>
@@ -18,7 +18,7 @@ export default function SafetyPage() {
             Community Safety & Age Policy
           </h1>
           <p className="text-sm text-slate-400">
-            StrangerConnect is built to provide an enjoyable, spontaneous environment while maintaining zero tolerance for harm.
+            Let&apos;s Chat is built to provide an enjoyable, spontaneous environment while maintaining zero tolerance for harm.
           </p>
         </div>
 
@@ -29,7 +29,7 @@ export default function SafetyPage() {
               <h2>1. Strictly 18+ Platform</h2>
             </div>
             <p>
-              StrangerConnect is strictly restricted to adults aged 18 and older. Random video and text chat with strangers is not suitable for minors. Anyone found to be underage will be banned immediately.
+              Let&apos;s Chat is strictly restricted to adults aged 18 and older. Random video and text chat with strangers is not suitable for minors. Anyone found to be underage will be banned immediately.
             </p>
           </section>
 

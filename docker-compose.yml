@@ -1,12 +1,12 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: strangerconnect-postgres
+    container_name: letschat-postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: strangerconnect
+      POSTGRES_DB: letschat
     ports:
       - "5432:5432"
     volumes:
@@ -14,14 +14,14 @@ services:
       - ./database/migrations:/docker-entrypoint-initdb.d/migrations:ro
       - ./database/seeds:/docker-entrypoint-initdb.d/seeds:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d strangerconnect"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d letschat"]
       interval: 5s
       timeout: 5s
       retries: 5
 
   redis:
     image: redis:7-alpine
-    container_name: strangerconnect-redis
+    container_name: letschat-redis
     restart: unless-stopped
     command: ["redis-server", "--appendonly", "yes"]
     ports:
@@ -36,7 +36,7 @@ services:
 
   coturn:
     image: coturn/coturn:latest
-    container_name: strangerconnect-coturn
+    container_name: letschat-coturn
     restart: unless-stopped
     network_mode: host
     volumes:

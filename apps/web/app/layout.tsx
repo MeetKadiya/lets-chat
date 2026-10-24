@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'StrangerConnect — Anonymous Text & Video Chat',
+  title: "Let's Chat — Anonymous Text & Video Chat",
   description: 'Meet strangers with shared interests safely and anonymously.',
 };
 

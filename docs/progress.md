@@ -1,6 +1,6 @@
-# StrangerConnect — Progress Tracker & Acceptance Checklist
+# Let's Chat — Progress Tracker & Acceptance Checklist
 
-**Project:** StrangerConnect (Anonymous Random Text & Video Chat)  
+**Project:** Let's Chat (formerly StrangerConnect — Anonymous Random Text & Video Chat)  
 **Overall Status:** Full Implementation & Verification Complete  
 **Last Updated:** 2026-10-25
 

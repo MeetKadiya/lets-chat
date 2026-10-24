@@ -1,8 +1,8 @@
-# StrangerConnect Implementation Plan
+# Let's Chat Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build and verify StrangerConnect, a modern, production-grade anonymous text and video chat application with interest-based atomic matchmaking, WebRTC peer-to-peer media, PostgreSQL persistence, and Redis queue coordination.
+**Goal:** Build and verify Let's Chat (formerly StrangerConnect), a modern, production-grade anonymous text and video chat application with interest-based atomic matchmaking, WebRTC peer-to-peer media, PostgreSQL persistence, and Redis queue coordination.
 
 **Architecture:** The frontend (Next.js 14+ App Router, Tailwind CSS) communicates with a standalone real-time signaling and queue server (Node.js + Socket.IO) over WebSockets. Transient state (queues, active matches, rate limits) is atomically managed in Redis using Lua scripts, while persistent records (sessions, blocks, reports, moderation) are stored in PostgreSQL. WebRTC handles peer-to-peer audio/video streaming via STUN/TURN, entirely decoupled from Socket.IO message traffic.
 

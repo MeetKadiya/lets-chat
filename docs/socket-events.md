@@ -1,4 +1,4 @@
-# StrangerConnect — Socket.IO Event Specification
+# Let's Chat — Socket.IO Event Specification
 
 **Protocol Version:** 1.0.0  
 **Transport:** WebSocket (with polling fallback)  

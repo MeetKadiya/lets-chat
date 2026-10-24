@@ -83,7 +83,7 @@ export async function startServer(port = env.PORT) {
 
   return new Promise<http.Server>((resolve) => {
     const server = httpServer.listen(port, () => {
-      console.log(`StrangerConnect Realtime Server running on port ${port} (env: ${env.NODE_ENV})`);
+      console.log(`Let's Chat Realtime Server running on port ${port} (env: ${env.NODE_ENV})`);
       resolve(server);
     });
   });

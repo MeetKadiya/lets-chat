@@ -1,6 +1,6 @@
-# StrangerConnect — System Architecture & Data Flow
+# Let's Chat — System Architecture & Data Flow
 
-StrangerConnect is an anonymous random text and video chat web application prioritized by shared interests.
+Let's Chat is an anonymous random text and video chat web application prioritized by shared interests.
 
 ---
 

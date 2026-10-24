@@ -1,4 +1,4 @@
--- StrangerConnect Database Schema Migration 001
+-- Let's Chat Database Schema Migration 001
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 CREATE TABLE IF NOT EXISTS anonymous_sessions (

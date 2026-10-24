@@ -1,8 +1,8 @@
-# StrangerConnect ⚡
+# Let's Chat ⚡
 
 > **Anonymous Random Text and Video Chat with Interest-Based Matchmaking**
 
-StrangerConnect connects strangers with shared interests in real-time. Built with a modern dark theme, atomic Redis queue coordination, WebRTC peer-to-peer audio/video streaming, zero mandatory registration, and strict privacy by design.
+Let's Chat connects strangers with shared interests in real-time. Built with a modern dark theme, atomic Redis queue coordination, WebRTC peer-to-peer audio/video streaming, zero mandatory registration, and strict privacy by design.
 
 ---
 
@@ -24,7 +24,7 @@ StrangerConnect connects strangers with shared interests in real-time. Built wit
 | :--- | :--- |
 | **Frontend** | Next.js 14 (App Router), React, TypeScript, Tailwind CSS, Lucide Icons |
 | **Realtime Server** | Node.js, Socket.IO, Express, TypeScript |
-| **Shared Contracts** | Zod schemas, TypeScript event definitions (`@strangerconnect/shared`) |
+| **Shared Contracts** | Zod schemas, TypeScript event definitions (`packages/shared`) |
 | **State & Queues** | Redis 7 (Sorted sets, Lua atomic transactions, sliding-window rate limits) |
 | **Persistence** | PostgreSQL 16 (Anonymous sessions, blocks, reports, moderation actions) |
 | **Media Transport** | WebRTC (RTCPeerConnection, STUN/TURN via Coturn) |
@@ -66,7 +66,7 @@ Visit [http://localhost:3000](http://localhost:3000) in your browser!
 
 ## 🧪 Testing Summary
 
-StrangerConnect includes automated test suites covering:
+Let's Chat includes automated test suites covering:
 - **Shared Zod Schemas:** Payload validation, string bounds, and category schemas.
 - **Session Service:** Cryptographic token generation, hashing, and cache revocation.
 - **Matchmaking Engine:** Concurrent reservation, self-match prevention, and interest scoring.

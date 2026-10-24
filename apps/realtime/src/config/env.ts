@@ -8,7 +8,7 @@ const envSchema = z.object({
   PORT: z.coerce.number().default(4000),
   REALTIME_PORT: z.coerce.number().optional(),
   WEB_URL: z.string().url().default('http://localhost:3000'),
-  DATABASE_URL: z.string().default('postgresql://postgres:postgres@localhost:5432/strangerconnect'),
+  DATABASE_URL: z.string().default('postgresql://postgres:postgres@localhost:5432/letschat'),
   REDIS_URL: z.string().default('redis://localhost:6379'),
   SESSION_SECRET: z.string().min(16).default('dev-session-secret-change-in-production-min-32-chars'),
   TURN_URL: z.string().default('turn:localhost:3478'),

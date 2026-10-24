@@ -33,7 +33,7 @@ export default function LandingPage() {
               <Sparkles className="w-5 h-5" />
             </div>
             <span className="font-extrabold text-lg tracking-tight text-white">
-              Stranger<span className="text-cyan-400">Connect</span>
+              Let&apos;s <span className="text-cyan-400">Chat</span>
             </span>
           </div>
 
@@ -101,7 +101,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-slate-800/80 py-6 bg-surface-200/30">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <div>© {new Date().getFullYear()} StrangerConnect. Built for anonymous serendipity.</div>
+          <div>© {new Date().getFullYear()} Let&apos;s Chat. Built for anonymous serendipity.</div>
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:text-slate-400">Privacy Policy</Link>
             <Link href="/safety" className="hover:text-slate-400">Community Safety</Link>
