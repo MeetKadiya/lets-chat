@@ -17,14 +17,14 @@ export function MediaControls({
   onToggleVideo,
 }: MediaControlsProps) {
   return (
-    <div className="flex items-center justify-center gap-2 p-2 bg-surface-200/90 border border-slate-800 rounded-xl">
+    <div className="flex items-center justify-center gap-2 p-2 bg-white/[0.04] border border-white/10 rounded-2xl">
       <button
         type="button"
         onClick={onToggleAudio}
-        className={`p-2 rounded-lg border transition-all ${
+        className={`p-2.5 rounded-xl border transition-all ${
           isAudioMuted
-            ? 'bg-rose-500/20 border-rose-500 text-rose-300'
-            : 'bg-surface-100 border-slate-700 text-slate-200 hover:text-white'
+            ? 'bg-rose-500/20 border-rose-500/40 text-rose-300'
+            : 'bg-white/10 border-white/10 text-slate-200 hover:text-white'
         }`}
         title={isAudioMuted ? 'Unmute microphone' : 'Mute microphone'}
       >
@@ -34,10 +34,10 @@ export function MediaControls({
       <button
         type="button"
         onClick={onToggleVideo}
-        className={`p-2 rounded-lg border transition-all ${
+        className={`p-2.5 rounded-xl border transition-all ${
           isVideoDisabled
-            ? 'bg-rose-500/20 border-rose-500 text-rose-300'
-            : 'bg-surface-100 border-slate-700 text-slate-200 hover:text-white'
+            ? 'bg-rose-500/20 border-rose-500/40 text-rose-300'
+            : 'bg-white/10 border-white/10 text-slate-200 hover:text-white'
         }`}
         title={isVideoDisabled ? 'Turn camera on' : 'Turn camera off'}
       >

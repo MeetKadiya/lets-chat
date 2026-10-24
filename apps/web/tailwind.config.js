@@ -9,25 +9,31 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          purple: '#582BF7',
-          purpleDark: '#471FE0',
-          purpleDeep: '#3712BE',
-          card: '#6F47FC',
-          cardLight: '#7D57FC',
-          yellow: '#FFE814',
-          yellowHover: '#F5DC00',
-          dark: '#161426',
-          darkCard: '#1E1B33',
-          darkBorder: '#2E2A4A',
-          darkHover: '#292544',
+        obsidian: {
+          950: '#070A11',
+          900: '#0B0F19',
+          850: '#0F1626',
+          800: '#141C30',
+          700: '#1E293B',
         },
-        background: '#582BF7',
+        brand: {
+          cyan: '#06B6D4',
+          cyanHover: '#0891B2',
+          indigo: '#6366F1',
+          indigoDark: '#4F46E5',
+          coral: '#F43F5E',
+          emerald: '#10B981',
+          glass: 'rgba(16, 23, 38, 0.7)',
+          glassBorder: 'rgba(255, 255, 255, 0.08)',
+          glassHover: 'rgba(255, 255, 255, 0.12)',
+          yellow: '#FFE814',
+        },
+        background: '#070A11',
         surface: {
-          50: '#1e293b',
-          100: '#161e2e',
-          200: '#111726',
-          300: '#0B0F17',
+          50: '#1E293B',
+          100: '#141C30',
+          200: '#0F1626',
+          300: '#070A11',
         },
         primary: {
           DEFAULT: '#3B82F6',

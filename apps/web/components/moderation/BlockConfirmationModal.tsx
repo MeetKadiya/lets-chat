@@ -17,8 +17,8 @@ export function BlockConfirmationModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
-      <div className="w-full max-w-sm bg-surface-200 border border-slate-700/80 rounded-2xl p-6 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-150">
+      <div className="w-full max-w-sm bg-[#0F1626] border border-white/10 rounded-3xl p-6 sm:p-7 shadow-2xl text-white glass-panel animate-in zoom-in-95 duration-200">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2 text-rose-400">
             <ShieldAlert className="w-5 h-5" />
@@ -27,21 +27,21 @@ export function BlockConfirmationModal({
           <button
             type="button"
             onClick={onClose}
-            className="text-slate-400 hover:text-white transition-colors"
+            className="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         <p className="text-xs text-slate-300 leading-relaxed mb-6">
-          Blocking will immediately end this chat and permanently prevent you and this stranger from being matched together again in the future.
+          Blocking will immediately terminate this connection and record an authoritative block in the database to prevent either party from ever matching again.
         </p>
 
-        <div className="flex justify-end gap-2">
+        <div className="flex justify-end gap-2.5">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 rounded-xl bg-surface-100 hover:bg-slate-700 text-xs font-semibold text-slate-300 transition-colors"
+            className="px-4 py-2 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] text-xs font-semibold text-slate-300 transition-colors"
           >
             Cancel
           </button>
@@ -51,7 +51,7 @@ export function BlockConfirmationModal({
               onConfirm();
               onClose();
             }}
-            className="px-5 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-xs font-semibold text-white shadow-lg shadow-rose-600/20 transition-all"
+            className="px-5 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-xs font-bold text-white shadow-lg shadow-rose-600/25 transition-all"
           >
             Confirm Block
           </button>
