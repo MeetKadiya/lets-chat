@@ -39,7 +39,7 @@ services:
       WEB_URL: ${WEB_URL:-http://localhost:3000}
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-letschat}
       REDIS_URL: redis://redis:6379
-      SESSION_SECRET: ${SESSION_SECRET}
+      SESSION_SECRET: ${SESSION_SECRET:-dev-session-secret-change-in-production-min-32-chars}
     ports:
       - "4000:4000"
     depends_on:
