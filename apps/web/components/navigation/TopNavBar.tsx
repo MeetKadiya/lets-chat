@@ -98,7 +98,7 @@ export function TopNavBar({
           type="button"
           onClick={onOpenPlus}
           className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-yellow text-slate-900 flex items-center justify-center font-bold shadow-lg shadow-yellow-500/20 hover:scale-105 transition-all"
-          title="Let's Chat Plus"
+          title="Mingleo Plus"
         >
           <Crown className="w-4 h-4 sm:w-5 sm:h-5 text-amber-900 fill-amber-900" />
         </button>

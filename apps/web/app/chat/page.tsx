@@ -1,54 +1,61 @@
 'use client';
 
 import React, { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { Sparkles, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Sparkles, Heart } from 'lucide-react';
 import { ChatContainer } from '../../components/chat/ChatContainer';
+import { MingleoLogo } from '../../components/common/MingleoLogo';
 
 function ChatRoomInner() {
-  const searchParams = useSearchParams();
-  const mode = searchParams.get('mode') || 'text';
-  const rawInterests = searchParams.get('interests');
-  const interests = rawInterests ? rawInterests.split(',') : [];
-
   return (
-    <div className="min-h-screen flex flex-col bg-brand-purple brand-bg-pattern text-white">
-      {/* Mini Header */}
-      <header className="h-14 border-b border-white/10 bg-black/20 backdrop-blur-md px-4 sm:px-6 flex items-center justify-between z-20">
+    <div className="min-h-screen flex flex-col bg-[#FFF9ED] text-[#252820] select-none">
+      {/* Top Header */}
+      <header className="h-16 bg-[#FFF9ED] border-b-2 border-[#252820] px-4 sm:px-6 flex items-center justify-between z-20">
         <Link
           href="/"
-          className="flex items-center gap-2 text-xs font-bold text-white/80 hover:text-white transition-colors"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border-2 border-[#252820] shadow-[0_2px_0_#252820] text-xs font-black text-[#252820] hover:bg-[#F4EBD9] transition-all active:translate-y-0.5 active:shadow-none"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Exit to Home</span>
+          <ArrowLeft className="w-3.5 h-3.5 stroke-[3]" />
+          <span>Exit to Lobby</span>
         </Link>
 
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white text-base shadow">
-            🐵
-          </div>
-          <span className="font-black text-sm tracking-tight text-white">
-            Let&apos;s Chat
-          </span>
-        </div>
+        {/* Center: Brand Logo */}
+        <MingleoLogo size="sm" href="/" />
 
-        <div className="text-xs text-white/70 hidden sm:block">
-          Press <kbd className="px-2 py-0.5 rounded-full bg-white/15 border border-white/20 text-white font-mono text-[10px]">Esc</kbd> for Next Stranger
+        {/* Right: Shortcut Hint */}
+        <div className="text-xs font-bold text-slate-600 hidden sm:flex items-center gap-1.5">
+          <span>Press</span>
+          <kbd className="px-2 py-0.5 rounded-lg bg-white border-2 border-[#252820] shadow-[0_1px_0_#252820] font-mono font-black text-[11px] text-[#252820]">
+            Esc
+          </kbd>
+          <span>for Next</span>
         </div>
       </header>
 
-      {/* Chat Container */}
-      <main className="flex-1 p-0 sm:p-4 flex items-center justify-center">
+      {/* Main Chat Workspace */}
+      <main className="flex-1 p-2 sm:p-4 md:p-6 flex items-center justify-center">
         <ChatContainer />
       </main>
+
+      {/* Bottom Friendly Banner */}
+      <footer className="py-2 px-4 bg-[#EAF5D5] border-t-2 border-[#252820] text-center text-xs font-bold text-[#252820] flex items-center justify-center gap-2">
+        <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline" />
+        <span>Be kind. Be respectful. Have fun!</span>
+      </footer>
     </div>
   );
 }
 
 export default function ChatPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-slate-400">Loading chat...</div>}>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[#FFF9ED] flex flex-col items-center justify-center text-[#252820] font-black">
+          <div className="w-10 h-10 border-4 border-[#65A843] border-t-transparent rounded-full animate-spin mb-4" />
+          <p>Connecting to mingleo...</p>
+        </div>
+      }
+    >
       <ChatRoomInner />
     </Suspense>
   );

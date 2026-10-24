@@ -17,31 +17,33 @@ export function MediaControls({
   onToggleVideo,
 }: MediaControlsProps) {
   return (
-    <div className="flex items-center justify-center gap-2 p-2 bg-surface-200/90 border border-slate-800 rounded-xl">
+    <div className="flex items-center justify-center gap-3 p-2 bg-[#FFF9ED] border-2 border-[#252820] shadow-[0_2px_0_#252820] rounded-2xl">
       <button
         type="button"
         onClick={onToggleAudio}
-        className={`p-2 rounded-lg border transition-all ${
+        className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border-2 border-[#252820] shadow-[0_2px_0_#252820] text-xs font-black transition-all active:translate-y-0.5 active:shadow-none ${
           isAudioMuted
-            ? 'bg-rose-500/20 border-rose-500 text-rose-300'
-            : 'bg-surface-100 border-slate-700 text-slate-200 hover:text-white'
+            ? 'bg-rose-100 text-rose-700'
+            : 'bg-white text-[#252820] hover:bg-[#EAF5D5]'
         }`}
         title={isAudioMuted ? 'Unmute microphone' : 'Mute microphone'}
       >
-        {isAudioMuted ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+        {isAudioMuted ? <MicOff className="w-4 h-4 text-rose-600" /> : <Mic className="w-4 h-4 text-[#65A843]" />}
+        <span>{isAudioMuted ? 'Unmute' : 'Mute'}</span>
       </button>
 
       <button
         type="button"
         onClick={onToggleVideo}
-        className={`p-2 rounded-lg border transition-all ${
+        className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border-2 border-[#252820] shadow-[0_2px_0_#252820] text-xs font-black transition-all active:translate-y-0.5 active:shadow-none ${
           isVideoDisabled
-            ? 'bg-rose-500/20 border-rose-500 text-rose-300'
-            : 'bg-surface-100 border-slate-700 text-slate-200 hover:text-white'
+            ? 'bg-rose-100 text-rose-700'
+            : 'bg-white text-[#252820] hover:bg-[#EAF5D5]'
         }`}
         title={isVideoDisabled ? 'Turn camera on' : 'Turn camera off'}
       >
-        {isVideoDisabled ? <VideoOff className="w-4 h-4" /> : <Video className="w-4 h-4" />}
+        {isVideoDisabled ? <VideoOff className="w-4 h-4 text-rose-600" /> : <Video className="w-4 h-4 text-[#65A843]" />}
+        <span>{isVideoDisabled ? 'Start Video' : 'Stop Video'}</span>
       </button>
     </div>
   );

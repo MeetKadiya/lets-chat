@@ -3,30 +3,26 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { TopNavBar } from '../components/navigation/TopNavBar';
-import { HeroSection } from '../components/landing/HeroSection';
-import { ProfileModal } from '../components/modals/ProfileModal';
-import { MessagesModal } from '../components/modals/MessagesModal';
-import { PlusSubscriptionModal } from '../components/modals/PlusSubscriptionModal';
-import { SafetyLabModal } from '../components/modals/SafetyLabModal';
-import { FreeCoinsModal } from '../components/modals/FreeCoinsModal';
-import { InterestsModal } from '../components/modals/InterestsModal';
 import { ChatMode } from '@strangerconnect/shared';
+import { MingleoHeader } from '../components/navigation/MingleoHeader';
+import { HeroSection } from '../components/landing/HeroSection';
+import { BlockyTerrain } from '../components/common/BlockyTerrain';
+import { MingleoDashboardModal, MingleoTab } from '../components/mingleo/MingleoDashboardModal';
 
 export default function LandingPage() {
   const router = useRouter();
   const [selectedMode, setSelectedMode] = useState<ChatMode>('video');
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [isStarting, setIsStarting] = useState(false);
-  const [isTheaterMode, setIsTheaterMode] = useState(false);
 
-  // Modals state
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [isMessagesOpen, setIsMessagesOpen] = useState(false);
-  const [isPlusOpen, setIsPlusOpen] = useState(false);
-  const [isSafetyOpen, setIsSafetyOpen] = useState(false);
-  const [isCoinsOpen, setIsCoinsOpen] = useState(false);
-  const [isInterestsOpen, setIsInterestsOpen] = useState(false);
+  // Unified Mingleo Dashboard Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeModalTab, setActiveModalTab] = useState<MingleoTab>('profile');
+
+  const handleOpenTab = (tab: MingleoTab) => {
+    setActiveModalTab(tab);
+    setIsModalOpen(true);
+  };
 
   const handleStart = () => {
     setIsStarting(true);
@@ -38,95 +34,68 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-brand-purple brand-bg-pattern text-white relative overflow-hidden select-none">
-      {/* Subtle Floating Watermark Icons in Background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.06] select-none flex flex-wrap justify-around items-center p-8">
-        <span className="text-8xl">🐵</span>
-        <span className="text-7xl">💬</span>
-        <span className="text-9xl">⚡</span>
-        <span className="text-8xl">✨</span>
-        <span className="text-7xl">🐵</span>
-        <span className="text-9xl">💬</span>
-        <span className="text-8xl">🐵</span>
-        <span className="text-7xl">⚡</span>
-      </div>
-
-      {/* Top Navigation Bar */}
-      <TopNavBar
-        onOpenSafety={() => setIsSafetyOpen(true)}
-        onOpenPlus={() => setIsPlusOpen(true)}
-        onOpenMessages={() => setIsMessagesOpen(true)}
-        onOpenProfile={() => setIsProfileOpen(true)}
-        onOpenInterests={() => setIsInterestsOpen(true)}
-        onOpenCoins={() => setIsCoinsOpen(true)}
-        onToggleTheater={() => setIsTheaterMode(!isTheaterMode)}
-        isTheaterMode={isTheaterMode}
-        selectedInterestsCount={selectedInterests.length}
+    <div className="min-h-screen flex flex-col justify-between bg-[#FFF9ED] text-[#252820] relative overflow-hidden select-none">
+      {/* Top Header Navigation */}
+      <MingleoHeader
+        onOpenProfile={() => handleOpenTab('profile')}
+        onOpenPricing={() => handleOpenTab('pricing')}
+        onOpenInterests={() => handleOpenTab('interests')}
+        onOpenFriends={() => handleOpenTab('friends')}
+        onOpenSafety={() => handleOpenTab('safety')}
+        onOpenSettings={() => handleOpenTab('settings')}
+        username="BlockyBuddy"
       />
 
-      {/* Central Screen Area */}
-      <main className={`flex-1 flex flex-col items-center justify-center transition-all ${
-        isTheaterMode ? 'max-w-7xl mx-auto w-full scale-105' : 'w-full'
-      }`}>
+      {/* Central Screen Area / Hero Section */}
+      <main className="flex-1 flex flex-col items-center justify-center w-full z-10">
         <HeroSection
           selectedMode={selectedMode}
           onSelectMode={setSelectedMode}
           onStart={handleStart}
           isConnecting={isStarting}
           selectedInterests={selectedInterests}
-          onOpenInterests={() => setIsInterestsOpen(true)}
+          onOpenInterests={() => handleOpenTab('interests')}
         />
       </main>
 
-      {/* Clean Bottom Footer */}
-      <footer className="w-full py-4 px-6 flex flex-col sm:flex-row items-center justify-between text-xs text-white/60 z-10 gap-2">
+      {/* Blocky Terrain with animated sheep, flowers, and tree */}
+      <BlockyTerrain />
+
+      {/* Friendly Bottom Safety Footer */}
+      <footer className="w-full bg-[#5C3A20] text-[#FFF9ED]/80 py-2.5 px-6 flex flex-col sm:flex-row items-center justify-between text-xs font-bold z-20 gap-2 border-t border-[#252820]/30">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span>Strict 18+ Peer-to-Peer Anonymous Social Network</span>
+          <span className="w-2 h-2 rounded-full bg-[#65A843] animate-pulse" />
+          <span>Strictly Moderated Peer-to-Peer Social Discovery • 18+</span>
         </div>
 
-        <div className="flex items-center gap-5">
-          <Link href="/safety" className="hover:text-white transition-colors">
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            onClick={() => handleOpenTab('safety')}
+            className="hover:text-white hover:underline transition-colors"
+          >
             Safety Guidelines
-          </Link>
-          <Link href="/privacy" className="hover:text-white transition-colors">
-            Privacy Policy
+          </button>
+          <button
+            type="button"
+            onClick={() => handleOpenTab('pricing')}
+            className="hover:text-white hover:underline transition-colors"
+          >
+            Mingleo Plus
+          </button>
+          <Link href="/safety" className="hover:text-white hover:underline transition-colors">
+            Safety & Help
           </Link>
         </div>
       </footer>
 
-      {/* Interactive Popovers and Modals */}
-      <ProfileModal
-        isOpen={isProfileOpen}
-        onClose={() => setIsProfileOpen(false)}
-        onOpenPlus={() => setIsPlusOpen(true)}
-      />
-
-      <MessagesModal
-        isOpen={isMessagesOpen}
-        onClose={() => setIsMessagesOpen(false)}
-      />
-
-      <PlusSubscriptionModal
-        isOpen={isPlusOpen}
-        onClose={() => setIsPlusOpen(false)}
-      />
-
-      <SafetyLabModal
-        isOpen={isSafetyOpen}
-        onClose={() => setIsSafetyOpen(false)}
-      />
-
-      <FreeCoinsModal
-        isOpen={isCoinsOpen}
-        onClose={() => setIsCoinsOpen(false)}
-      />
-
-      <InterestsModal
-        isOpen={isInterestsOpen}
-        onClose={() => setIsInterestsOpen(false)}
+      {/* Multi-Tabbed Mingleo Dashboard Modal */}
+      <MingleoDashboardModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        initialTab={activeModalTab}
         selectedInterests={selectedInterests}
-        onChange={setSelectedInterests}
+        onInterestsChange={setSelectedInterests}
       />
     </div>
   );

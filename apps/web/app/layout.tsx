@@ -2,8 +2,11 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: "Let's Chat — Anonymous Text & Video Chat",
-  description: 'Meet strangers with shared interests safely and anonymously.',
+  title: 'mingleo — Meet strangers. Make connections.',
+  description: 'A playful cartoon-style social discovery platform to meet new people through random video conversations and shared interests.',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
@@ -12,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="min-h-screen flex flex-col bg-brand-purple brand-bg-pattern text-white antialiased selection:bg-brand-yellow selection:text-black overflow-x-hidden">
+    <html lang="en">
+      <body className="min-h-screen flex flex-col bg-[#FFF9ED] text-[#252820] antialiased selection:bg-[#65A843] selection:text-white overflow-x-hidden">
         {children}
       </body>
     </html>

@@ -26,7 +26,7 @@ export function MessageInput({ onSendMessage, disabled }: MessageInputProps) {
   };
 
   return (
-    <div className="p-3 border-t border-slate-800 bg-surface-200/90">
+    <div className="p-3.5 border-t-2 border-[#252820] bg-[#FFF9ED]">
       <form onSubmit={handleSubmit} className="flex items-center gap-2">
         <input
           type="text"
@@ -36,18 +36,19 @@ export function MessageInput({ onSendMessage, disabled }: MessageInputProps) {
           disabled={disabled}
           placeholder={disabled ? 'Waiting for a stranger to connect...' : 'Type a message (Enter to send)...'}
           maxLength={2000}
-          className="flex-1 bg-surface-100/90 border border-slate-700/60 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyan-500 disabled:opacity-50 transition-colors"
+          className="flex-1 bg-white border-2 border-[#252820] shadow-[0_2px_0_#252820] rounded-xl px-4 py-2.5 text-xs sm:text-sm font-bold text-[#252820] placeholder-slate-400 focus:outline-none focus:border-[#65A843] disabled:opacity-50 transition-colors"
         />
         <button
           type="submit"
           disabled={disabled || !text.trim()}
-          className="p-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-white transition-all shadow-md shadow-blue-600/20 flex items-center justify-center"
+          className="mingleo-btn-green px-4 py-2.5 rounded-xl disabled:opacity-40 flex items-center justify-center gap-1.5"
           title="Send message"
         >
-          <Send className="w-4 h-4" />
+          <span className="hidden sm:inline text-xs font-black uppercase">Send</span>
+          <Send className="w-3.5 h-3.5 stroke-[2.5]" />
         </button>
       </form>
-      <div className="flex justify-between items-center px-1 mt-1 text-[11px] text-slate-500">
+      <div className="flex justify-between items-center px-1 mt-1.5 text-[11px] font-bold text-slate-500">
         <span>Press Enter to send</span>
         <span>{text.length}/2000</span>
       </div>

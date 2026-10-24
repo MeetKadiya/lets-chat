@@ -3,88 +3,124 @@
 @tailwind utilities;
 
 :root {
-  --foreground: #f8fafc;
-  --background: #582bf7;
+  --foreground: #252820;
+  --background: #FFF9ED;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  background-color: #582bf7;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #252820;
+  background-color: #FFF9ED;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   overflow-x: hidden;
 }
 
-/* Background watermark pattern reminiscent of reference */
-.brand-bg-pattern {
-  background-color: #582bf7;
-  background-image: 
-    radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.04) 0%, transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+/* Mingleo Tactile Blocky Buttons (Minecraft & Gumroad inspired) */
+.mingleo-btn-green {
+  background-color: #65A843;
+  color: #FFFFFF;
+  border: 2px solid #252820;
+  box-shadow: 0 4px 0 #252820;
+  font-weight: 800;
+  transition: all 0.12s ease-in-out;
 }
 
-.brand-yellow-btn {
-  background-color: #ffe814;
-  color: #0b0b0f;
-  box-shadow: 0 4px 0 #ccb700;
-  transition: all 0.15s ease-in-out;
-}
-
-.brand-yellow-btn:hover {
-  background-color: #ffed38;
+.mingleo-btn-green:hover:not(:disabled) {
+  background-color: #5BA03A;
   transform: translateY(-1px);
-  box-shadow: 0 5px 0 #ccb700;
+  box-shadow: 0 5px 0 #252820;
 }
 
-.brand-yellow-btn:active {
+.mingleo-btn-green:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #252820;
+}
+
+.mingleo-btn-white {
+  background-color: #FFFFFF;
+  color: #252820;
+  border: 2px solid #252820;
+  box-shadow: 0 4px 0 #252820;
+  font-weight: 700;
+  transition: all 0.12s ease-in-out;
+}
+
+.mingleo-btn-white:hover:not(:disabled) {
+  background-color: #F8FAF2;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 #252820;
+}
+
+.mingleo-btn-white:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #252820;
+}
+
+.mingleo-btn-red {
+  background-color: #EF5350;
+  color: #FFFFFF;
+  border: 2px solid #252820;
+  box-shadow: 0 4px 0 #252820;
+  font-weight: 700;
+  transition: all 0.12s ease-in-out;
+}
+
+.mingleo-btn-red:hover:not(:disabled) {
+  background-color: #E53935;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 #252820;
+}
+
+.mingleo-btn-red:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #252820;
+}
+
+.mingleo-card {
+  background-color: #FFF9ED;
+  border: 2px solid #252820;
+  box-shadow: 0 4px 0 #252820;
+  border-radius: 1rem;
+}
+
+.mingleo-card-mint {
+  background-color: #EAF5D5;
+  border: 2px solid #252820;
+  box-shadow: 0 4px 0 #252820;
+  border-radius: 1rem;
+}
+
+.mingleo-chip {
+  border: 2px solid #252820;
+  box-shadow: 0 3px 0 #252820;
+  transition: all 0.12s ease-in-out;
+}
+
+.mingleo-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 #252820;
+}
+
+.mingleo-chip:active {
   transform: translateY(2px);
-  box-shadow: 0 2px 0 #ccb700;
-}
-
-/* Glassy pill navigation buttons */
-.nav-glass-pill {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  transition: all 0.2s ease;
-}
-
-.nav-glass-pill:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.nav-circle-btn {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  transition: all 0.2s ease;
-}
-
-.nav-circle-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: scale(1.05);
+  box-shadow: 0 1px 0 #252820;
 }
 
 /* Custom scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #FFF9ED;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #C8DCA0;
+  border: 1px solid #252820;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #65A843;
 }

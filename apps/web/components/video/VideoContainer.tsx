@@ -13,6 +13,7 @@ interface VideoContainerProps {
   isVideoDisabled: boolean;
   onToggleAudio: () => void;
   onToggleVideo: () => void;
+  sessionState?: string;
 }
 
 export function VideoContainer({
@@ -25,17 +26,17 @@ export function VideoContainer({
   onToggleVideo,
 }: VideoContainerProps) {
   return (
-    <div className="flex flex-col h-full space-y-3 p-4">
-      {/* Permission alert if camera/mic denied */}
+    <div className="flex flex-col h-full space-y-3">
+      {/* Camera/Mic Permission alert if denied */}
       {permissionError && (
-        <div className="flex items-center gap-2 p-3 rounded-xl bg-amber-950/40 border border-amber-800/60 text-amber-200 text-xs">
-          <AlertCircle className="w-4 h-4 shrink-0 text-amber-400" />
+        <div className="flex items-center gap-2 p-3 rounded-2xl bg-amber-100 border-2 border-[#252820] shadow-[0_2px_0_#252820] text-amber-900 text-xs font-bold">
+          <AlertCircle className="w-4 h-4 shrink-0 text-amber-700" />
           <span>{permissionError}</span>
         </div>
       )}
 
       {/* Video Panels Layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1 min-h-[300px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1 min-h-[260px]">
         {/* Remote stranger video */}
         <VideoPanel
           stream={remoteStream}
@@ -54,7 +55,7 @@ export function VideoContainer({
       </div>
 
       {/* Local Media Toggles */}
-      <div className="flex justify-center">
+      <div className="flex justify-center pt-1">
         <MediaControls
           isAudioMuted={isAudioMuted}
           isVideoDisabled={isVideoDisabled}
