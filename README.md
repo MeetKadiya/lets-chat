@@ -1,62 +1,125 @@
-# Let's Chat ⚡
+# Let's Chat 💬🌿
 
-> **Anonymous Random Text and Video Chat with Interest-Based Matchmaking**
+> **Playful, tactile anonymous random video-chat platform with interest matching and 2v2 squad rooms.**
 
-Let's Chat connects strangers with shared interests in real-time. Built with a modern dark theme, atomic Redis queue coordination, WebRTC peer-to-peer audio/video streaming, zero mandatory registration, and strict privacy by design.
-
----
-
-## ✨ Features
-
-- **🚀 Instant Anonymous Chat:** No registration, email, or passwords required. 256-bit cryptographically secure sessions generated on the fly.
-- **🎯 Smart Interest Matchmaking:** Prioritizes strangers who love what you love using Jaccard similarity scoring with dynamic queue relaxation (0–10s strict, 10–20s overlap, 20s+ random fallback).
-- **⚡ Atomic Concurrency:** Redis Lua scripts (`reserve_match.lua`) eliminate race conditions, duplicate matches, and ghost queue allocations.
-- **🎥 WebRTC Video & Audio:** Direct peer-to-peer encrypted media streams decoupled completely from Socket.IO signaling.
-- **🔒 Privacy by Design:** Routine text chats exist only in ephemeral memory during the active conversation; never stored to disk by default. Zero video recording.
-- **🛡️ Integrated Safety:** 1-click **Next**, **Disconnect**, **Report**, and **Block** controls with Redis token-bucket rate limits and persistent exclusion.
-- **🌙 Modern Dark UI:** Responsive slate/cyan interface with accessible contrast, smooth transitions, and keyboard shortcuts (<kbd>Esc</kbd> for Next).
+[![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![Socket.IO](https://img.shields.io/badge/Socket.IO-4.7-010101?style=flat&logo=socketdotio)](https://socket.io/)
+[![WebRTC](https://img.shields.io/badge/WebRTC-P2P%20Encrypted-333333?style=flat&logo=webrtc)](https://webrtc.org/)
+[![Redis](https://img.shields.io/badge/Redis-7.2-DC382D?style=flat&logo=redis)](https://redis.io/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?style=flat&logo=postgresql)](https://www.postgresql.org/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat&logo=docker)](https://www.docker.com/)
 
 ---
 
-## 🛠️ Architecture & Tech Stack
+## 🎨 Visual Identity & Experience
 
-| Layer | Technologies |
-| :--- | :--- |
-| **Frontend** | Next.js 14 (App Router), React, TypeScript, Tailwind CSS, Lucide Icons |
-| **Realtime Server** | Node.js, Socket.IO, Express, TypeScript |
-| **Shared Contracts** | Zod schemas, TypeScript event definitions (`packages/shared`) |
-| **State & Queues** | Redis 7 (Sorted sets, Lua atomic transactions, sliding-window rate limits) |
-| **Persistence** | PostgreSQL 16 (Anonymous sessions, blocks, reports, moderation actions) |
-| **Media Transport** | WebRTC (RTCPeerConnection, STUN/TURN via Coturn) |
-| **Testing** | Vitest (Unit & Multi-Client Integration) |
-| **Orchestration** | Docker Compose |
+Let's Chat blends the bold simplicity of **Gumroad** with the tactile, blocky charm of **Minecraft**:
+* **Chunky Tactile Panels:** Cream cards (`#FFF9E9`), mint-fresh backgrounds (`#E8F2DF`), and bold 2px ink borders (`#111111`) with offset drop shadows (`shadow-[0_4px_0_#111111]`).
+* **Pixel-Art Scenery & Characters:** Pixel player avatars, floating clouds, grass blocks, friendly sheep, flowers, and full pixel trees.
+* **Responsive Layout:** Designed for desktop, tablet, and mobile with keyboard shortcuts (<kbd>Esc</kbd> for Next).
 
 ---
 
-## 🚀 Quick Start
+## ✨ Key Features
 
-### 1. Install Dependencies
+### 1. 🚀 1-on-1 Anonymous Video Chat
+* **Zero Barrier:** No mandatory sign-up, email, or passwords. Ephemeral 256-bit secure sessions generated instantly.
+* **P2P WebRTC Streams:** Direct encrypted audio and video feeds decoupled from signaling servers for ultra-low latency.
+* **Live In-Call Messaging:** Integrated chatbox with real-time text delivery and typing states.
+* **Quick Controls:** 1-click **Next (<kbd>Esc</kbd>)**, **Mute Mic**, **Disable Camera**, **End Call**, and **Report / Block**.
+
+### 2. 👥 Squad Rooms (2v2 Duo Party Mode)
+* **Team Up with Friends:** Generate a shareable 6-digit party code (e.g. `887 123`) with 1-click copy.
+* **Join via Code:** Friends can enter the room code to link into your duo squad.
+* **2v2 Stranger Matching:** Both camera feeds enter matchmaking together to meet stranger pairs.
+* **Synchronized Skipping:** Either squad partner can skip to the next room together.
+
+### 3. 🎯 Smart Interest Matching
+* **Tag Preferences:** Choose from 12+ interest categories (Gaming, Minecraft, Anime, Music, Tech, Art, and more).
+* **Jaccard Similarity Scoring:** Matches you with users sharing overlapping interests with progressive queue relaxation (0–10s strict, 10–20s loose, 20s+ random fallback).
+
+### 4. 🛡️ Safety & Moderation
+* **Atomic Matchmaking:** Redis Lua scripts (`reserve_match.lua`) prevent duplicate matches, race conditions, or ghost allocations.
+* **Sliding-Window Rate Limiting:** Prevents skip spam and DDoS abuses.
+* **One-Click Moderation:** Instant abuse reporting and persistent bidirectional user blocking.
+
+---
+
+## 🧭 Page Routes & Screens
+
+| Route | Screen Name | Description |
+| :--- | :--- | :--- |
+| **`/`** | **Home Lobby** | Dual video arena, Solo/Squad switcher, interest selector, and live call action. |
+| **`/chat`** | **Live Video Room** | Full-screen live 1-on-1 WebRTC video session with chat and controls. |
+| **`/squad`** | **Squad Rooms** | Dedicated 2v2 duo party lobby with code generation and partner join. |
+| **`/profile`** | **My Profile** | Custom avatar selector, username, bio, and stats showcase. |
+| **`/pricing`** | **Let's Chat Plus** | Subscription plans ($0 Free vs $9.99/mo Plus with gender filter & perks). |
+| **`/interests`**| **Interests & Tags** | Visual grid of 12+ interest badges with multi-select support. |
+| **`/friends`** | **Friends & History** | Active friends list, recent conversation log, and add-friend shortcuts. |
+| **`/safety`** | **Safety Center** | Community guidelines, safety pledges, and reporting procedures. |
+| **`/settings`**| **Settings** | Device selectors (camera/mic), notifications, theme, and audio toggles. |
+
+---
+
+## 🛠️ Architecture & Monorepo Structure
+
+```
+LetsChat/
+├── apps/
+│   ├── web/                     # Next.js 14 App Router Frontend
+│   │   ├── app/                 # Routes: /, /chat, /squad, /profile, /pricing, etc.
+│   │   ├── components/
+│   │   │   ├── letschat/        # Minecraft/Gumroad blocky UI components & screens
+│   │   │   ├── chat/            # Realtime chat container & messaging
+│   │   │   └── video/           # WebRTC video elements & stream handles
+│   │   └── public/assets/       # Pixel-art SVG characters, environment & icons
+│   └── realtime/                # Node.js + Socket.IO + Express Backend
+│       ├── src/
+│       │   ├── services/        # Matchmaking, Session, WebRTC signaling, Moderation
+│       │   ├── repositories/    # Redis Lua script runners & PostgreSQL pools
+│       │   └── socket/          # Socket.IO connection and event dispatchers
+│       └── scripts/lua/         # reserve_match.lua (Atomic matching transaction)
+├── packages/
+│   └── shared/                  # Shared Zod schemas, TypeScript types, and socket events
+└── docker-compose.prod.yml      # Production orchestration (Web, Realtime, Redis, Postgres)
+```
+
+---
+
+## 🚀 Quick Start Guide
+
+### Prerequisites
+* **Node.js**: v20 or higher
+* **npm**: v10 or higher
+* **Docker & Docker Compose** (for production or containerized services)
+
+---
+
+### Method A: Local Development
+
+#### 1. Install Dependencies
 ```bash
 npm install
 ```
 
-### 2. Build Shared Contracts
+#### 2. Build Shared Contracts
 ```bash
 npm run build --workspace=packages/shared
 ```
 
-### 3. Run Tests
+#### 3. Run Automated Tests
 ```bash
-# Run all unit and multi-client integration tests
-npm run test
+npm test
 ```
 
-### 4. Start Development Servers
+#### 4. Start Development Servers
+Open two terminal tabs:
+
 ```bash
-# In terminal 1: Start Realtime Server (port 4000)
+# Terminal 1: Realtime Signaling Server (Port 4000)
 npm run dev:realtime
 
-# In terminal 2: Start Next.js Web App (port 3000)
+# Terminal 2: Next.js Web App (Port 3000)
 npm run dev:web
 ```
 
@@ -64,28 +127,43 @@ Visit [http://localhost:3000](http://localhost:3000) in your browser!
 
 ---
 
-## 🧪 Testing Summary
+### Method B: Production Docker Deployment
 
-Let's Chat includes automated test suites covering:
-- **Shared Zod Schemas:** Payload validation, string bounds, and category schemas.
-- **Session Service:** Cryptographic token generation, hashing, and cache revocation.
-- **Matchmaking Engine:** Concurrent reservation, self-match prevention, and interest scoring.
-- **Multi-Client E2E Chat:** 2 concurrent sockets joining queue, receiving match, sending messages, and handling Next skips.
-- **WebRTC Signaling:** SDP Offer/Answer relay, ICE candidate relay, and unauthorized third-party packet rejection.
-- **Moderation:** Token-bucket rate limiting and bidirectional block enforcement.
+To launch the full production environment (PostgreSQL 16, Redis 7, Realtime Server, and Next.js Web App):
+
+```bash
+docker compose -f docker-compose.prod.yml up -d --build
+```
+
+To stop containers:
+```bash
+docker compose -f docker-compose.prod.yml down
+```
 
 ---
 
-## 📚 Documentation
+## 🧪 Testing
 
-- [Architecture & Data Flow](docs/architecture.md)
-- [Architecture Decision Records (ADRs)](docs/architecture-decisions.md)
-- [Socket.IO Event Specification](docs/socket-events.md)
-- [Implementation Plan](docs/implementation-plan.md)
-- [Progress & Acceptance Checklist](docs/progress.md)
-- [Deployment Guide](docs/deployment.md)
+The codebase includes comprehensive Vitest test suites:
+
+```bash
+# Run all workspace tests
+npm test
+
+# Run only web component tests
+npm run test --workspace=apps/web
+
+# Run only shared contracts tests
+npm run test --workspace=packages/shared
+```
+
+Coverage highlights:
+* **Shared Zod Contracts:** Validates payloads, string bounds, and enum categories.
+* **Atomic Matchmaking:** Verified queue reservations, mutual interest matching, and timeout fallbacks.
+* **Signaling Integrity:** SDP offer/answer relay, ICE candidates, and spoof prevention.
+* **Frontend UI Components:** Navigation, Start Card, Mode Switchers, Terrain Footer, and Call Controls.
 
 ---
 
 ## 📜 License
-MIT License.
+This project is licensed under the MIT License.
